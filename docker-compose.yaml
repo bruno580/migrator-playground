@@ -21,6 +21,16 @@ services:
     ports:
       - "1433:1433"
 
+  postgresql-db:
+    image: postgres:latest
+    container_name: postgresql-db
+    environment:
+      POSTGRES_USER: migrator
+      POSTGRES_PASSWORD: demo123
+      POSTGRES_DB: source_db
+    ports:
+      - "5432:5432"
+
   relational-migrator:
     image: public.ecr.aws/v4d7k6c9/relational-migrator:latest
     container_name: relational-migrator

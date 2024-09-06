@@ -37,6 +37,7 @@ Each database is forwarding their default TCP ports onto their respective port i
 | Database   | Hostname<br>(SQL Client) | Hostname<br>(Docker) | Port  | Username | Password            |
 | ---------- | ------------------------ | -------------------- | ----- | -------- | ------------------- |
 | MySQL      | localhost                | mysql-db             | 3306  | root     | root_password       |
+| PostgreSQL | localhost                | postgresql-db        | 5432  | migrator | demo123             |
 | SQL Server | localhost                | sqlserver-db         | 1433  | sa       | YourStrongPassword! |
 | MongoDB    | localhost                | mongodb-target       | 27017 | root     | example             |
 
