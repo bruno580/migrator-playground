@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: source_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+
+  sqlserver-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver-db
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourStrongPassword!"
+    ports:
+      - "1433:1433"
+
+  relational-migrator:
+    image: public.ecr.aws/v4d7k6c9/relational-migrator:latest
+    container_name: relational-migrator
+    depends_on:
+      - mysql-db
+      - sqlserver-db
+      - mongodb-target
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./drivers/mysql-connector-j-9.0.0.jar:/opt/mongodb-relational-migrator/lib/app/lib/driver.jar:ro
+
+  mongodb-target:
+    image: mongo:latest
+    container_name: mongodb-target
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
