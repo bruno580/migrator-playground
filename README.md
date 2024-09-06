@@ -19,6 +19,9 @@ Getting started is as easy as:
 git clone git@github.com:bruno580/migrator-playground.git
 ```
 
+- Download MySQL Connector and save it inside the "drivers" folder
+Link: https://dev.mysql.com/downloads/connector/j/
+
 - Running docker-compose
 ```
 cd migrator-playground
